@@ -1,37 +1,26 @@
 # imdb-pybr2022
 
+Web scraping tutorial presented at [Python Brasil 2022](https://pretalx.com/python-brasil-2022/talk/JGXM7G/).
+Fetches the IMDB Top 250 list, parses the HTML with BeautifulSoup, and prints a
+random title from the ranking.
 
-Repositório do Tutorial de [Raspagem de Dados IMBD](https://pretalx.com/python-brasil-2022/talk/JGXM7G/) para a Python Brasil 2022.
+## Stack
 
+- Python 3.9+ · requests · BeautifulSoup4 · lxml
 
+## Running
 
-## Para Desenvolver:
+```bash
+python -m venv .venv && source .venv/bin/activate   # Linux/macOS
+# .venv\Scripts\activate                             # Windows
 
-1. Clone o repositório.
-2. Crie um virtualenv com Python 3.9.
-3. Ative o virtualenv.
-4. Instale as dependências.
-5. Adicione as variáveis de ambiente referentes à sua realidade.
-
-### Ambientes Linux:
-```
-python3 -m venv .venv
-source .venv/bin/activate
-cp env-sample .env
 pip install -r requirements.txt
+python imdb.py
 ```
-### Ambientes Windows:
-```
-Set-ExecutionPolicy Unrestricted -Scope Process
-py -3 -m venv .venv
-.venv\Scripts\activate
-copy env-sample .env
-pip install -r requirements.txt
-```
-### Caso queira liberar os scripts como Admnistrador no Ambiente Windows:
-[Clique aqui](https://docs.vmware.com/en/vRealize-Automation/7.6/com.vmware.vra.iaas.hp.doc/GUID-9670AFC5-76B8-4321-822A-BCE05800DB5B.html)
 
-# Para Rodar o Código:
-```
-python -m imdb
-```
+## What it does
+
+1. Fetches `https://www.imdb.com/chart/top/`
+2. Parses the `tbody.lister-list` table with BeautifulSoup + lxml
+3. Builds a list of `{"Nome do Filme": ..., "Ano": ...}` dicts
+4. Prints one random entry
